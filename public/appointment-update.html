@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Update Appointment</title>
+
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    <div class="header-holder">
+        <h1><a href="index.html" class="site-name">Appointment Management</a></h1>
+    </div>
+    
+    <div class="buttons-holder">
+        <a href="appointment-new.html" class="button">New Appointment</a><br>
+        <a href="appointment-update.html" class="button">Update Appointment</a><br>
+        <a href="appointment-delete.html" class="button">Delete Appointment</a>
+    </div>
+
+    <div class="form-holder">
+        <h2>Update Appointment</h2>
+        <br>
+
+        <form>
+            <label for="appointmentID">Appointment ID:</label>
+            <input type="text" id="appointmentID" placeholder="Appointment ID"><br>
+            <label for="patientID">Patient ID:</label>
+            <input type="text" id="patientID" placeholder="Patient ID"><br>
+            <label for="clinicID">Clinic ID:</label>
+            <input type="text" id="clinicID" placeholder="Clinic ID"><br>
+            <label for="doctorID">Doctor ID:</label>
+            <input type="text" id="doctorID" placeholder="Doctor ID"><br>
+            <label for="apptDate">Appointment Date:</label>
+            <input type="date" id="apptDate"><br>
+            <label for="apptTime">Appointment Time:</label>
+            <input type="time" id="apptTime"><br>
+            <label for="apptType">Appointment Type:</label>
+            <select id="apptType"><br>
+                <option>Select</option>
+                <option value="1">Consultation</option>
+                <option value="2">Inpatient</option>
+                <option value="3">Procedure</option>
+            </select><br>
+            <label for="virtual">Virtual?:</label>
+            <select id="virtual"><br>
+                <option>Select</option>
+                <option value="1">Yes</option>
+                <option value="0">No</option>
+            </select><br>
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+</body>
+</html>

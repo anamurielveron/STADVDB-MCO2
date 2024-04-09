@@ -4,6 +4,7 @@
   --primary: #627254;
   --secondary: #76885B;
   --accent: #C68484;
+  --accent-2: #2f4016;
   --white: #EEEEEE;
   --white-2: #DDDDDD;
   --black: #222222;
@@ -26,9 +27,16 @@ body {
     padding: 1rem 2rem;
 }
 
-h1 {
+.site-name {
     font-family: 'Roboto Mono', monospace;
-    font-size: 1.5rem;
+    font-weight: bold;
+    text-decoration: none;
+    color: var(--white);
+    transition: color 0.3s;
+}
+
+.site-name:hover {
+    color: var(--accent-2);
 }
 
 .buttons-holder{
@@ -58,7 +66,7 @@ h1 {
 }
 
 .button:hover {
-    background-color: var(--accent);
+    background-color: var(--accent-2);
 }
 
 .search-holder {
@@ -86,7 +94,40 @@ input[type="text"] {
     background-color: var(--white-2);
     color: var(--black);
     border-radius: 5px;
-    margin: 0 1rem;
+    margin: 1rem 1rem;
+}
+
+input[type="date"] {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 1rem;
+    padding: 0.5rem 1.5rem;
+    border: none;
+    background-color: var(--white-2);
+    color: var(--black);
+    border-radius: 5px;
+    margin: 1rem 1rem;
+}
+
+input[type="time"] {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 1rem;
+    padding: 0.5rem 1.5rem;
+    border: none;
+    background-color: var(--white-2);
+    color: var(--black);
+    border-radius: 5px;
+    margin: 1rem 1rem;
+}
+
+select {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 1rem;
+    padding: 0.5rem 1.5rem;
+    border: none;
+    background-color: var(--white-2);
+    color: var(--black);
+    border-radius: 5px;
+    margin: 1rem 1rem;
 }
 
 input[type="submit"] {
@@ -100,9 +141,26 @@ input[type="submit"] {
     cursor: pointer;
     transition: background-color 0.3s;
     border-radius: 5px;
-    margin: 0 1rem;
+    margin: 1rem 1rem;
 }
 
 input[type="submit"]:hover {
-    background-color: var(--accent);
+    background-color: var(--accent-2);
+}
+
+h2 {
+    color: var(--primary);
+}
+
+.form-holder {
+    display: flex;
+    flex-direction: column;
+    float: right;
+    justify-content: center;
+    align-items: center;
+    height: 95vh;
+    width: 50%;
+    background-color: var(--background);
+    margin: auto;
+    padding: auto;
 }
