@@ -21,34 +21,44 @@
         <h2>Update Appointment</h2>
         <br>
 
+        <!--
+        //////   Appointment ID Search to Update    ///////
+        -->
+
         <form>
             <label for="appointmentID">Appointment ID:</label>
-            <input type="text" id="appointmentID" placeholder="Appointment ID"><br>
+            <input type="text" id="appointmentID" placeholder="Appointment ID" required><br>
+            <input type="submit" value="Find">
+        </form>
+
+        <!--
+        //////   Appointment Details Preview    ///////
+        -->
+        <form>
             <label for="patientID">Patient ID:</label>
-            <input type="text" id="patientID" placeholder="Patient ID"><br>
+            <input type="text" id="patientID" placeholder="Patient ID" required><br>
             <label for="clinicID">Clinic ID:</label>
-            <input type="text" id="clinicID" placeholder="Clinic ID"><br>
+            <input type="text" id="clinicID" placeholder="Clinic ID" required><br>
             <label for="doctorID">Doctor ID:</label>
-            <input type="text" id="doctorID" placeholder="Doctor ID"><br>
+            <input type="text" id="doctorID" placeholder="Doctor ID" required><br>
             <label for="apptDate">Appointment Date:</label>
-            <input type="date" id="apptDate"><br>
+            <input type="date" id="apptDate" required><br>
             <label for="apptTime">Appointment Time:</label>
-            <input type="time" id="apptTime"><br>
+            <input type="time" id="apptTime" required><br>
             <label for="apptType">Appointment Type:</label>
-            <select id="apptType"><br>
-                <option>Select</option>
+            <select id="apptType" required><br>
                 <option value="1">Consultation</option>
                 <option value="2">Inpatient</option>
                 <option value="3">Procedure</option>
             </select><br>
             <label for="virtual">Virtual?:</label>
-            <select id="virtual"><br>
-                <option>Select</option>
+            <select id="virtual" required><br>
                 <option value="1">Yes</option>
                 <option value="0">No</option>
             </select><br>
-            <input type="submit" value="Submit">
+            <input type="submit" value="Update">
         </form>
+
     </div>
 </body>
 </html>
