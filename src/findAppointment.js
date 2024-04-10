@@ -1,52 +1,43 @@
-// Function to fetch appointment data by ID
-async function fetchAppointmentById(appointmentId) {
-    try {
-        const response = await fetch(`appointments/${appointmentId}`);
-        const data = await response.json();
-        return data;
-    } catch (error) {
-        console.error('Error fetching appointment data:', error);
-        return null;
-    }
-}
+// Import the mysql module
+import { createPool } from 'mysql';
 
-// Function to display appointment details
-function displayAppointmentDetails(appointment) {
-    // Display appointment details in the form
-    document.getElementById('apptStatus').value = appointment.status;
-    document.getElementById('apptDate').value = appointment.apptDate;
-    document.getElementById('apptTime').value = appointment.apptTime;
-    document.getElementById('apptType').value = appointment.apptType;
-    document.getElementById('virtual').value = appointment.virtual;
-}
+// Create a connection pool
+const pool = createPool({
+    host: 'ccscloud.dlsu.edu.ph',
+    user: 'username',
+    password: 'password',
+    database: 'Philippines'
+});
 
-// Function to handle form submission
-function handleSubmit(event) {
-    event.preventDefault();
-    // Implement form submission logic here
-}
+// Function to find an appointment by ID
+function findAppointmentById(appointmentId, callback) {
+    // Query to find appointment by ID
+    const query = 'SELECT * FROM denormalizedtable WHERE apptid = ?';
 
-// Function to find appointment by ID and populate form
-async function findAppointmentByIdAndPopulateForm(appointmentId) {
-    try {
-        const appointment = await fetchAppointmentById(appointmentId);
-        if (appointment) {
-            displayAppointmentDetails(appointment);
-        } else {
-            console.error('Appointment not found.');
+    // Acquire a connection from the pool
+    pool.getConnection((err, connection) => {
+        if (err) {
+            // Handle connection error
+            callback(err, null);
+            return;
         }
-    } catch (error) {
-        console.error('Error finding appointment:', error);
-    }
+
+        // Execute the query with the provided appointment ID
+        connection.query(query, [appointmentId], (error, results) => {
+            // Release the connection back to the pool
+            connection.release();
+
+            if (error) {
+                // Handle query execution error
+                callback(error, null);
+                return;
+            }
+
+            // Pass the results to the callback function
+            callback(null, results);
+        });
+    });
 }
 
-// Call the function to find appointment by ID and populate form when the page loads
-window.onload = function() {
-    const urlParams = new URLSearchParams(window.location.search);
-    const appointmentId = urlParams.get('id');
-    if (appointmentId) {
-        findAppointmentByIdAndPopulateForm(appointmentId);
-    } else {
-        console.error('Appointment ID not provided.');
-    }
-};
+// Export the findAppointmentById function
+export default findAppointmentById;

@@ -2,10 +2,9 @@
 <html>
 <head>
     <title>Update Appointment</title>
-
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="clinicDropdown.js"></script>
+    <script type="text/javascript" src="/src/findAppointment.js"></script> <!-- Include the findAppointment.js script -->
 </head>
 <body>
     <div class="header-holder">
@@ -23,43 +22,52 @@
         <h2>Update Appointment</h2>
         <br>
 
-        <!--
-        //////   Appointment ID Search to Update    ///////
-        -->
-        <form>
+        <!-- Appointment ID Search to Update -->
+        <form id="updateAppointmentForm" onsubmit="return false;">
             <label for="appointmentID">Appointment ID:</label>
             <input type="text" id="appointmentID" placeholder="Appointment ID" required><br>
-            <input type="submit" value="Find">
+            <input type="submit" value="Find" onclick="findAndUpdateAppointment()">
         </form> <br>
-        <!--
-        //////   Appointment Details Preview    ///////
-        -->
-        <form>
-            <label for="apptStatus">Status:</label>
-            <select id="apptStatus" required><br>
-                <option>Select</option>
-                <option value="Queued">Queued</option>
-                <option value="Complete">Complete</option>
-            </select><br>
-            <label for="apptDate">Appointment Date:</label>
-            <input type="date" id="apptDate" required><br>
-            <label for="apptTime">Appointment Time:</label>
-            <input type="time" id="apptTime" required><br>
-            <label for="apptType">Appointment Type:</label>
-            <select id="apptType" required><br>
-                <option>Select</option>
-                <option value="Consultation">Consultation</option>
-                <option value="Inpatient">Inpatient</option>
-            </select><br>
-            <label for="virtual">Virtual?:</label>
-            <select id="virtual" required><br>
-                <option>Select</option>
-                <option value="1">Yes</option>
-                <option value="0">No</option>
-            </select><br>
-            <input type="submit" value="Update">
-        </form>
 
+        <!-- Appointment Details Preview -->
+        <form id="updateForm" style="display:none;"> <!-- Hide form until appointment is found -->
+            <!-- Display appointment details here -->
+            <label for="apptStatus">Status:</label>
+            <input type="text" id="apptStatus" readonly><br>
+            <label for="apptDate">Appointment Date:</label>
+            <input type="date" id="apptDate" readonly><br>
+            <label for="apptTime">Appointment Time:</label>
+            <input type="time" id="apptTime" readonly><br>
+            <label for="apptType">Appointment Type:</label>
+            <input type="text" id="apptType" readonly><br>
+            <label for="virtual">Virtual?:</label>
+            <input type="text" id="virtual" readonly><br>
+        </form>
     </div>
+
+    <script>
+        // Function to find and update appointment
+        function findAndUpdateAppointment() {
+            var appointmentId = document.getElementById('appointmentID').value;
+            
+            // Call the findAppointment function from findAppointment.js
+            findAppointmentById(appointmentId, function(err, appointment) {
+                if (err) {
+                    console.error('Error finding appointment:', err);
+                    alert('Appointment not found.');
+                } else {
+                    // Display appointment details in the form
+                    document.getElementById('apptStatus').value = appointment.status;
+                    document.getElementById('apptDate').value = appointment.date;
+                    document.getElementById('apptTime').value = appointment.time;
+                    document.getElementById('apptType').value = appointment.type;
+                    document.getElementById('virtual').value = appointment.virtual;
+                    
+                    // Show the update form
+                    document.getElementById('updateForm').style.display = 'block';
+                }
+            });
+        }
+    </script>
 </body>
 </html>
