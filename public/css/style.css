@@ -164,3 +164,31 @@ h2 {
     margin: auto;
     padding: auto;
 }
+
+.table-holder {
+    display: flex;
+    flex-direction: column;
+    float: right;
+    justify-content: center;
+    align-items: center;
+    height: 95vh;
+    width: 70%;
+    background-color: var(--background);
+    margin: auto;
+    padding: auto;
+}
+
+th {
+    background-color: var(--primary);
+    color: var(--white);
+}
+
+table, th, td {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 1rem;
+    border-collapse: collapse;
+    width: 80%;
+    border: 2px solid var(--primary);
+    margin: 1rem 1rem;
+    padding: 0.5rem;
+}

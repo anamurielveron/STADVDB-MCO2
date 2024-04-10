@@ -5,6 +5,7 @@
 
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="clinicDropdown.js"></script>
 </head>
 <body>
     <div class="header-holder">
@@ -14,7 +15,8 @@
     <div class="buttons-holder">
         <a href="appointment-new.html" class="button">New Appointment</a><br>
         <a href="appointment-update.html" class="button">Update Appointment</a><br>
-        <a href="appointment-delete.html" class="button">Delete Appointment</a>
+        <a href="appointment-delete.html" class="button">Delete Appointment</a><br>
+        <a href="clinic-appointments.html" class="button">Clinic Stats</a>
     </div>
 
     <div class="form-holder">
@@ -24,35 +26,34 @@
         <!--
         //////   Appointment ID Search to Update    ///////
         -->
-
         <form>
             <label for="appointmentID">Appointment ID:</label>
             <input type="text" id="appointmentID" placeholder="Appointment ID" required><br>
             <input type="submit" value="Find">
-        </form>
-
+        </form> <br>
         <!--
         //////   Appointment Details Preview    ///////
         -->
         <form>
-            <label for="patientID">Patient ID:</label>
-            <input type="text" id="patientID" placeholder="Patient ID" required><br>
-            <label for="clinicID">Clinic ID:</label>
-            <input type="text" id="clinicID" placeholder="Clinic ID" required><br>
-            <label for="doctorID">Doctor ID:</label>
-            <input type="text" id="doctorID" placeholder="Doctor ID" required><br>
+            <label for="apptStatus">Status:</label>
+            <select id="apptStatus" required><br>
+                <option>Select</option>
+                <option value="Queued">Queued</option>
+                <option value="Complete">Complete</option>
+            </select><br>
             <label for="apptDate">Appointment Date:</label>
             <input type="date" id="apptDate" required><br>
             <label for="apptTime">Appointment Time:</label>
             <input type="time" id="apptTime" required><br>
             <label for="apptType">Appointment Type:</label>
             <select id="apptType" required><br>
-                <option value="1">Consultation</option>
-                <option value="2">Inpatient</option>
-                <option value="3">Procedure</option>
+                <option>Select</option>
+                <option value="Consultation">Consultation</option>
+                <option value="Inpatient">Inpatient</option>
             </select><br>
             <label for="virtual">Virtual?:</label>
             <select id="virtual" required><br>
+                <option>Select</option>
                 <option value="1">Yes</option>
                 <option value="0">No</option>
             </select><br>

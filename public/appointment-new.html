@@ -5,6 +5,7 @@
 
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="text/javascript" src="/src/clinicDropdown.js"></script>
 </head>
 <body>
     <div class="header-holder">
@@ -14,7 +15,8 @@
     <div class="buttons-holder">
         <a href="appointment-new.html" class="button">New Appointment</a><br>
         <a href="appointment-update.html" class="button">Update Appointment</a><br>
-        <a href="appointment-delete.html" class="button">Delete Appointment</a>
+        <a href="appointment-delete.html" class="button">Delete Appointment</a><br>
+        <a href="clinic-appointments.html" class="button">Clinic Stats</a>
     </div>
 
     <div class="form-holder">
@@ -22,24 +24,25 @@
         <br>
 
         <form>
-            <label for="patientID">Patient ID:</label>
-            <input type="text" id="patientID" placeholder="Patient ID" required><br>
-            <label for="clinicID">Clinic ID:</label>
-            <input type="text" id="clinicID" placeholder="Clinic ID" required><br>
-            <label for="doctorID">Doctor ID:</label>
-            <input type="text" id="doctorID" placeholder="Doctor ID" required><br>
+            <label for="clinicName">Clinic Name:</label>
+            <select id="clinicName" required><br>
+                <option>Select</option>
+            </select><br>
+            <!-- clinic ID -->
+            <input type="hidden" id="clinicID" name="clinicID">
             <label for="apptDate">Appointment Date:</label>
             <input type="date" id="apptDate" required><br>
             <label for="apptTime">Appointment Time:</label>
             <input type="time" id="apptTime" required><br>
             <label for="apptType">Appointment Type:</label>
             <select id="apptType" required><br>
+                <option>Select</option>
                 <option value="1">Consultation</option>
                 <option value="2">Inpatient</option>
-                <option value="3">Procedure</option>
             </select><br>
             <label for="virtual">Virtual?:</label>
             <select id="virtual" required><br>
+                <option>Select</option>
                 <option value="1">Yes</option>
                 <option value="0">No</option>
             </select><br>
