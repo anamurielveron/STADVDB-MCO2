@@ -5,7 +5,8 @@ import express from 'express';
 import {fileURLToPath} from 'url';
 import path from 'path';
 
-import {router} from './routes/index-routes.js';
+import {INDEX_ROUTES} from './routes/index-routes.js';
+import {APPOINTMENTS_ROUTES} from './routes/appointments-routes.js';
 
 // Create an instance of the Express application
 const app = express();
@@ -30,7 +31,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use(router);
+app.use(INDEX_ROUTES);
+app.use(APPOINTMENTS_ROUTES);
 
 // Start the server
 const PORT = process.env.PORT || 3000;

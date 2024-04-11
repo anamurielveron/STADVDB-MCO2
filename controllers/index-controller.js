@@ -1,5 +1,5 @@
-const index = (req, res) => {
+const getIndex = (req, res) => {
     res.render('index', {title: `Home`});
 };
 
-export {index};
+export {getIndex};
