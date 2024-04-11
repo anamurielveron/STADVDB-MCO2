@@ -16,12 +16,18 @@ dotenv.config();
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-app.engine('handlebars', engine());
-app.set('view engine', 'hbs');
+app.engine('.hbs', engine({
+    defaultLayout: 'main',
+    extname: '.hbs',
+    layoutsDir: path.join(app.get('views'), 'layouts'),
+    partialsDir: path.join(app.get('views'), 'partials'),
+}));
+app.set('view engine', '.hbs');
 app.set('views', path.join(__dirname, 'views'));
 
 // Middleware configuration
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(router);
