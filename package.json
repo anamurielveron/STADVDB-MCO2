@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "description": "db system management app",
   "main": "index.js",
+  "type": "module",
   "scripts": {
+    "start": "node app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -17,9 +19,13 @@
   },
   "homepage": "https://github.com/anamurielveron/STADVDB-MCO2#readme",
   "dependencies": {
+    "body-parser": "^1.20.2",
+    "dotenv": "^16.4.5",
     "express": "^4.19.2",
+    "express-handlebars": "^7.1.2",
     "mongoose": "^8.3.1",
     "mysql": "^2.18.1",
+    "mysql2": "^3.9.4",
     "nodemon": "^3.1.0"
   }
 }
