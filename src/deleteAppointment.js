@@ -1,11 +1,11 @@
 // Function to find an appointment by ID
-function findAppointmentById() {
+function deleteAppointment() {
     button.addEventListener('click', () => {
-        const RESULTS = fetch('/getAppointments');
+        const RESULTS = fetch('/deleteAppointment');
         console.log(RESULTS);
         
     });
 }
 
 // Export the findAppointmentById function
-export default findAppointmentById;
+export default deleteAppointment;
