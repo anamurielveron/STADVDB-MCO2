@@ -1,0 +1,24 @@
+{{> header}}
+{{> sidebar}}
+<div class="form-holder">
+    <h2>Update Appointment</h2>
+    <br>
+    <form id="updateAppointmentForm">
+        <label for="appointmentID">Appointment ID:</label>
+        <input type="text" id="appointmentID" placeholder="Appointment ID" required><br>
+        <label for="apptStatus">Status:</label>
+        <input type="text" id="apptStatus"><br>
+        <label for="apptDate">Appointment Date:</label>
+        <input type="date" id="apptDate"><br>
+        <label for="apptStartTime">Appointment Start Time:</label>
+        <input type="time" id="apptStartTime"><br>
+        <label for="apptEndTime">Appointment End Time:</label>
+        <input type="time" id="apptEndTime"><br>
+        <label for="apptType">Appointment Type:</label>
+        <input type="text" id="apptType"><br>
+        <label for="virtual">Virtual?:</label>
+        <input type="text" id="virtual"><br>
+        <input type="submit" value="Update">
+    </form>
+</div>
+<script src="/js/update-appointments"></script>

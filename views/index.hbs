@@ -1,10 +1,5 @@
 {{> header}}
-<div class="buttons-holder">
-    <a href="appointment-new.html" class="button">New Appointment</a><br>
-    <a href="appointment-update.html" class="button">Update Appointment</a><br>
-    <a href="appointment-delete.html" class="button">Delete Appointment</a><br>
-    <a href="clinic-appointments.html" class="button">Clinic Stats</a>
-</div>
+{{> sidebar}}
 <div class="search-holder">
     <form>
         <label for="appointmentID">Search by Appointment ID:</label><br>
@@ -12,3 +7,4 @@
         <input type="submit" value="Search">
     </form>
 </div>
+<script src="/js/get-appointments.js"></script>
