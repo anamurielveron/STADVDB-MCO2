@@ -1,0 +1,36 @@
+{{> header}}
+{{> sidebar}}
+<div class="form-holder">
+    <h2>New Appointment</h2>
+    <br>
+    <form>
+        <!--<label for="clinicName">Clinic Name:</label>
+        <select id="clinicName" required><br>
+            <option>Select</option>
+        </select><br>-->
+        <!-- clinic ID -->
+        <label for="clinicId">Clinic ID:</label>
+        <input type="text" id="clinicId" name="clinicID">
+        <br>
+        <label for="apptDate">Appointment Date:</label>
+        <input type="text" id="apptDate" required><br>
+        <!--<input type="date" id="apptDate" required><br>-->
+        <label for="apptTime">Appointment Time:</label>
+        <input type="text" id="apptTime" required><br>
+        <!--<input type="time" id="apptTime" required><br>-->
+        <label for="apptType">Appointment Type:</label>
+        <select id="apptType" required><br>
+            <option>Select</option>
+            <option value="1">Consultation</option>
+            <option value="2">Inpatient</option>
+        </select><br>
+        <label for="virtual">Virtual?:</label>
+        <select id="virtual" required><br>
+            <option>Select</option>
+            <option value="1">Yes</option>
+            <option value="0">No</option>
+        </select><br>
+        <input type="submit" value="Submit">
+    </form>
+</div>
+<script src="/js/create-appointments.js"></script>

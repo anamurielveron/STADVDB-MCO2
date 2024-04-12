@@ -4,6 +4,44 @@ import {
     POOL_VISMIN,
 } from '../database.js';
 
+const createAppointment = async (req, res) => {
+    try {
+        const {
+            clinicId,
+            queueDate,
+            startTime,
+            type,
+            virtual,
+        } = req.body;
+
+        const QUERY = `
+            INSERT INTO denormalizedappointments (
+                clinicid,
+                QueueDate,
+                StartTime,
+                type,
+                \`Virtual\`
+            )
+            VALUES (?, ?, ?, ?, ?);
+        `;
+
+        await POOL_PHILIPPINES.query(`
+            SET SESSION TRANSACTION ISOLATION LEVEL SERIALIZABLE;
+        `);
+        await POOL_PHILIPPINES.query(`START TRANSACTION;`);
+
+        const RESULT = await POOL_PHILIPPINES.query(QUERY, [
+            clinicId, queueDate, startTime, type, virtual,
+        ]);
+
+        await POOL_PHILIPPINES.query(`COMMIT;`);
+
+        res.status(200).json(RESULT);
+    } catch (error) {
+        res.status(400).json(error);
+    }
+};
+
 const deleteAppointment = async (req, res) => {
     try {
         const APPOINTMENT_ID = req.body.appointmentId;
@@ -14,7 +52,7 @@ const deleteAppointment = async (req, res) => {
         `);
         await POOL_PHILIPPINES.query(`START TRANSACTION;`);
 
-        const [RESULT] = await POOL_PHILIPPINES.query(QUERY, APPOINTMENT_ID);
+        const RESULT = await POOL_PHILIPPINES.query(QUERY, APPOINTMENT_ID);
 
         await POOL_PHILIPPINES.query(`COMMIT;`);
 
@@ -62,6 +100,10 @@ const getAppointments = async (req, res) => {
     }
 };
 
+const getCreateAppointments = async (req, res) => {
+    res.render('create-appointments', {title: 'Create Appointment'});
+};
+
 const getDeleteAppointments = async (req, res) => {
     res.render('delete-appointments', {title: 'Delete Appointment'});
 };
@@ -98,7 +140,7 @@ const updateAppointment = async (req, res) => {
         `);
         await POOL_PHILIPPINES.query(`START TRANSACTION;`);
 
-        const [RESULT] = await POOL_PHILIPPINES.query(QUERY, [
+        const RESULT = await POOL_PHILIPPINES.query(QUERY, [
             endTime,
             queueDate,
             startTime,
@@ -118,9 +160,11 @@ const updateAppointment = async (req, res) => {
 };
 
 export {
+    createAppointment,
     deleteAppointment,
     getAppointment,
     getAppointments,
+    getCreateAppointments,
     getDeleteAppointments,
     getUpdateAppointments,
     updateAppointment,
