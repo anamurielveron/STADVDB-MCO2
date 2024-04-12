@@ -30,12 +30,12 @@ const getAppointment = async (req, res) => {
         const APPOINTMENT_ID = req.params.appointmentId;
         const QUERY = 'SELECT * FROM denormalizedappointments WHERE apptid = ?;';
 
-        await POOL_PHILIPPINES.query(`
+        await POOL_LUZON.query(`
             SET SESSION TRANSACTION ISOLATION LEVEL READ UNCOMMITTED;
         `);
-        await POOL_PHILIPPINES.query(`START TRANSACTION;`);
+        await POOL_LUZON.query(`START TRANSACTION;`);
 
-        const [ROWS] = await POOL_PHILIPPINES.query(QUERY, APPOINTMENT_ID);
+        const [ROWS] = await POOL_LUZON.query(QUERY, APPOINTMENT_ID);
 
         res.status(200).json(ROWS);
     } catch (error) {
