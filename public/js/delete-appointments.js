@@ -12,7 +12,7 @@ SUBMIT_BTN.addEventListener('click', async () => {
                 type: document.querySelector('#apptType').value,
                 virtual: document.querySelector('#virtual').value,
             },
-            method: 'PUT',
+            method: 'DELETE',
         });
     } catch(error) {
         console.error(error);

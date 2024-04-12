@@ -4,6 +4,27 @@ import {
     POOL_VISMIN,
 } from '../database.js';
 
+const deleteAppointment = async (req, res) => {
+    try {
+        const APPOINTMENT_ID = req.body.appointmentId;
+        const QUERY = `DELETE FROM denormalizedappointments WHERE apptid = ?;`;
+
+        await POOL_PHILIPPINES.query(`
+            SET SESSION TRANSACTION ISOLATION LEVEL SERIALIZABLE;
+        `);
+        await POOL_PHILIPPINES.query(`START TRANSACTION;`);
+
+        const [RESULT] = await POOL_PHILIPPINES.query(QUERY, APPOINTMENT_ID);
+
+        await POOL_PHILIPPINES.query(`COMMIT;`);
+
+        res.status(200).json(RESULT);
+    } catch (error) {
+        console.error(error);
+        res.status(400).json(error);
+    }
+};
+
 const getAppointment = async (req, res) => {
     try {
         const APPOINTMENT_ID = req.params.appointmentId;
@@ -14,9 +35,7 @@ const getAppointment = async (req, res) => {
         `);
         await POOL_PHILIPPINES.query(`START TRANSACTION;`);
 
-        const [ROWS] = await POOL_PHILIPPINES.query(QUERY, [APPOINTMENT_ID]);
-
-        await POOL_PHILIPPINES.query(`DO SLEEP(10);`);
+        const [ROWS] = await POOL_PHILIPPINES.query(QUERY, APPOINTMENT_ID);
 
         res.status(200).json(ROWS);
     } catch (error) {
@@ -36,8 +55,6 @@ const getAppointments = async (req, res) => {
 
         const [ROWS] = await POOL_PHILIPPINES.query(QUERY);
 
-        await POOL_PHILIPPINES.query(`DO SLEEP(10);`);
-
         res.status(200).json(ROWS);
     } catch (error) {
         console.error(error)
@@ -45,8 +62,12 @@ const getAppointments = async (req, res) => {
     }
 };
 
+const getDeleteAppointments = async (req, res) => {
+    res.render('delete-appointments', {title: 'Delete Appointment'});
+};
+
 const getUpdateAppointments = async (req, res) => {
-    res.render('update-appointments');
+    res.render('update-appointments', {title: 'Update Appointment'});
 };
 
 const updateAppointment = async (req, res) => {
@@ -87,10 +108,7 @@ const updateAppointment = async (req, res) => {
             appointmentId,
         ]);
 
-        await POOL_PHILIPPINES.query(`
-            DO SLEEP(10)
-            COMMIT;
-        `);
+        await POOL_PHILIPPINES.query(`COMMIT;`);
 
         res.status(200).json(RESULT);
     } catch (error) {
@@ -99,22 +117,11 @@ const updateAppointment = async (req, res) => {
     }
 };
 
-const deleteAppointment = async (req, res, id) => {
-    try {
-        const [rows, fields] = await POOL_PHILIPPINES.query('DELETE FROM denormalizedappointments WHERE pxid = ' + id);
-
-        if (rows) {
-            res.status(200).json(rows);
-        }
-    } catch (error) {
-        console.error(error)
-    }
-};
-
 export {
+    deleteAppointment,
     getAppointment,
     getAppointments,
+    getDeleteAppointments,
     getUpdateAppointments,
     updateAppointment,
-    deleteAppointment,
 };

@@ -7,8 +7,6 @@ SUBMIT_BTN.addEventListener('click', async (event) => {
         const APPOINTMENT_ID = document.querySelector('#appointmentID').value;
         const RESPONSE = await fetch(`/appointments/${APPOINTMENT_ID}`);
         const DATA = await RESPONSE.json();
-
-        console.log(DATA);
     } catch (error) {
         console.error(error);
     }
