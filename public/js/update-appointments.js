@@ -5,10 +5,10 @@ SUBMIT_BTN.addEventListener('click', async (event) => {
 
     try {
         const DATA = {
-            appointmentId: document.querySelector('#appointmentId').value,
+            appointmentId: document.querySelector('#appointmentID').value,
             endTime: document.querySelector('#apptEndTime').value,
             queueDate: document.querySelector('#apptDate').value,
-            startTime: document.querySelector('#apptStartTimet').value,
+            startTime: document.querySelector('#apptStartTime').value,
             status: document.querySelector('#apptStatus').value,
             type: document.querySelector('#apptType').value,
             virtual: document.querySelector('#virtual').value,

@@ -5,13 +5,7 @@ SUBMIT_BTN.addEventListener('click', async (event) => {
 
     try {
         const DATA = {
-            appointmentId: document.querySelector('#appointmentId').value,
-            endTime: document.querySelector('#apptEndTime').value,
-            queueDate: document.querySelector('#apptDate').value,
-            startTime: document.querySelector('#apptStartTimet').value,
-            status: document.querySelector('#apptStatus').value,
-            type: document.querySelector('#apptType').value,
-            virtual: document.querySelector('#virtual').value,
+            appointmentId: document.querySelector('#appointmentID').value,
         };
         const RESPONSE = await fetch('/appointments', {
             body: JSON.stringify(DATA),
