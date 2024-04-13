@@ -105,7 +105,7 @@ const getAppointment = async (req, res) => {
         `);
         await POOL_PHILIPPINES.query(`START TRANSACTION;`);
 
-        const ROWS = await POOL_PHILIPPINES.query(QUERY, APPOINTMENT_ID);
+        const [ROWS] = await POOL_PHILIPPINES.query(QUERY, APPOINTMENT_ID);
 
         res.status(200).json(ROWS);
     } catch (error) {
@@ -123,7 +123,7 @@ const getAppointments = async (req, res) => {
         `);
         await POOL_PHILIPPINES.query(`START TRANSACTION;`);
 
-        const ROWS = await POOL_PHILIPPINES.query(QUERY);
+        const [ROWS] = await POOL_PHILIPPINES.query(QUERY);
 
         res.status(200).json(ROWS);
     } catch (error) {
